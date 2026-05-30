@@ -1,0 +1,176 @@
+",
+    "descricao": "Cinema de rua clássico da prefeitura. Tem sessões infantis à tarde e mostras independentes à noite, além de fácil acesso pelo metrô Santa Tereza.[1]",
+    "url": "https://prefeitura.pbh.gov.br/fundacao-municipal-de-cultura/cinema/cinesantatereza"
+  },
+  {
+    "id": 2,
+    "nome": "Cine Humberto Mauro",
+    "categoria": "Cinema",
+    "emoji": "🎞️",
+    "dor_resolvida": "Localizado na Avenida Afonso Pena, tem acesso rápido por dezenas de linhas do ônibus MOVE. Sessões e debates 100% sem custos.[2]",
+    "descricao": "Fica dentro do Palácio das Artes. É o melhor local da cidade para ver filmes clássicos e de arte, promovendo festivais longe das redes de shopping.[3]",
+    "url": "https://www.cinehumbertomauromais.com/programacao"
+  },
+  {
+    "id": 3,
+    "nome": "Centro Cultural Banco do Brasil (CCBB BH)",
+    "categoria": "Centro Cultural",
+    "emoji": "🏛️",
+    "dor_resolvida": "Não precisa retirar ingresso antecipado na internet para entrar no prédio ou nas exposições principais, é só chegar no guichê.[4]",
+    "descricao": "Espaço monumental na Praça da Liberdade. Abriga exposições globais, mostras geek e programação folclórica de alto nível sem cobrar nada.[4, 5]",
+    "url": "https://ccbb.com.br/belo-horizonte/"
+  },
+  {
+    "id": 4,
+    "nome": "Casa Fiat de Cultura",
+    "categoria": "Museu",
+    "emoji": "🎨",
+    "dor_resolvida": "Funciona até as 21h (terça a sexta), o que garante acesso tranquilo para quem trabalha o dia todo e só tem a noite livre.[6]",
+    "descricao": "Um dos principais espaços de artes visuais do estado. Oferece exposições que vão da arte barroca até instalações contemporâneas gratuitas.[7, 8]",
+    "url": "https://casafiatdecultura.com.br/"
+  },
+  {
+    "id": 5,
+    "nome": "SESI Museu de Artes e Ofícios",
+    "categoria": "Museu",
+    "emoji": "⚒️",
+    "dor_resolvida": "Fica na Praça da Estação, o epicentro do transporte (metrô e ônibus). A entrada é totalmente livre, validando a história da classe operária.[9, 10]",
+    "descricao": "Único museu do Brasil dedicado à história do trabalhador, reunindo ferramentas e ofícios pré-industriais em um ambiente lindíssimo.[9]",
+    "url": "https://mao.com.br/"
+  },
+  {
+    "id": 6,
+    "nome": "Museu da Moda (MUMO)",
+    "categoria": "Museu",
+    "emoji": "👗",
+    "dor_resolvida": "Perto da Prefeitura e da Rodoviária, permite acesso fácil a pé pelo Centro sem precisar de mapas complicados. Entrada de graça.[11]",
+    "descricao": "Funciona num prédio histórico deslumbrante e exibe a evolução do vestuário e exposições sobre grandes ícones da moda nacional.[12, 11]",
+    "url": "https://prefeitura.pbh.gov.br/fundacao-municipal-de-cultura/museus/mumo"
+  },
+  {
+    "id": 7,
+    "nome": "Palácio da Liberdade",
+    "categoria": "Patrimônio",
+    "emoji": "👑",
+    "dor_resolvida": "A visitação é gratuita e você não precisa agendar pela internet. É só fazer um cadastro rápido na hora e entrar.[13, 14]",
+    "descricao": "Antiga sede do governo. Dica: você precisa ir sem mochila e trafegar no tapete vermelho do segundo andar, viva a experiência de um convidado de honra.[15, 14]",
+    "url": "https://palaciodaliberdade.com.br/"
+  },
+  {
+    "id": 8,
+    "nome": "Memorial Minas Gerais Vale",
+    "categoria": "Museu",
+    "emoji": "⛰️",
+    "dor_resolvida": "Localizado na Praça da Liberdade, é sempre de graça. Quebra o ar 'sério' dos museus com projeções e tecnologia interativa.[16]",
+    "descricao": "Conta a história de Minas de um jeito muito imersivo. Frequentemente traz apresentações de cultura urbana, MCs e eventos noturnos na porta.[16]",
+    "url": "https://memorialvale.org/pt/"
+  },
+  {
+    "id": 9,
+    "nome": "Museu Histórico Abílio Barreto",
+    "categoria": "Patrimônio",
+    "emoji": "🕰️",
+    "dor_resolvida": "Conhecido como Museu da Cidade, tem entrada gratuita e áreas abertas amplas para a família passear aos finais de semana.[17]",
+    "descricao": "Sediado em um antigo casarão preservado da fazenda que originou Belo Horizonte, expõe objetos e fotografias que contam como a capital nasceu.[17]",
+    "url": "https://portalbelohorizonte.com.br/o-que-fazer/arte-e-cultura/museus/museu-historico-abilio-barreto-mhab"
+  },
+  {
+    "id": 10,
+    "nome": "Museu da Imagem e do Som (MIS)",
+    "categoria": "Centro Cultural",
+    "emoji": "📻",
+    "dor_resolvida": "Se o deslocamento estiver difícil, eles oferecem um roteiro de visitação virtual 3D maravilhoso acessível pelo celular.[18]",
+    "descricao": "Um acervo imenso sobre a memória fotográfica, musical e audiovisual de Belo Horizonte, com exposições presenciais totalmente grátis.[18, 19]",
+    "url": "https://prefeitura.pbh.gov.br/fundacao-municipal-de-cultura/museus/imagemesom"
+  },
+  {
+    "id": 11,
+    "nome": "Espaço do Conhecimento UFMG",
+    "categoria": "Conhecimento",
+    "emoji": "🔭",
+    "dor_resolvida": "Garante um passeio educativo em família sem gastar nada. O terraço e o edifício são projetados para prender a atenção das crianças.[8]",
+    "descricao": "Combina ciência, história e astronomia. O destaque é o terraço astronômico aberto à população em dias específicos.[8]",
+    "url": "https://portalbelohorizonte.com.br/"
+  },
+  {
+    "id": 12,
+    "nome": "Biblioteca Pública Estadual",
+    "categoria": "Conhecimento",
+    "emoji": "📚",
+    "dor_resolvida": "Acesso imediato e livre a cultura em um prédio icônico, além de possuir braile e material acessível para inclusão real.[8]",
+    "descricao": "Projetada por Oscar Niemeyer na Praça da Liberdade, é ótima para leitura e estudos, com um imenso acervo literário para crianças e adultos.[8]",
+    "url": "https://portalbelohorizonte.com.br/"
+  },
+  {
+    "id": 13,
+    "nome": "Centro Cultural Venda Nova",
+    "categoria": "Comunidade",
+    "emoji": "📍",
+    "dor_resolvida": "Você não precisa cruzar a cidade inteira até o Centro. Cultura de qualidade descentralizada, garantida de graça no seu bairro.[20]",
+    "descricao": "Polo fundamental para as famílias de Venda Nova, mantendo vivas oficinas literárias, música, circo e mostras da comunidade local.[20]",
+    "url": "https://prefeitura.pbh.gov.br/fundacao-municipal-de-cultura/centros-culturais"
+  },
+  {
+    "id": 14,
+    "nome": "Centro Cultural Alto Vera Cruz",
+    "categoria": "Comunidade",
+    "emoji": "🥁",
+    "dor_resolvida": "Espaço sem burocracia digital, gerando acesso imediato à arte para a juventude que costuma ser excluída das programações da Zona Sul.[20]",
+    "descricao": "Um epicentro de apresentações teatrais e ações comunitárias na região Leste, impulsionando os coletivos do próprio bairro.[20]",
+    "url": "https://prefeitura.pbh.gov.br/fundacao-municipal-de-cultura/centros-culturais"
+  },
+  {
+    "id": 15,
+    "nome": "Centro Cultural Pampulha",
+    "categoria": "Comunidade",
+    "emoji": "🎭",
+    "dor_resolvida": "Fuja das armadilhas de atrações turísticas pagas na região da orla. É diversão garantida para as crianças da região.[20]",
+    "descricao": "Espaço municipal que atende os bairros do entorno, provendo oficinas de artesanato, aulas livres e apresentações de dança de forma acessível.[20]",
+    "url": "https://prefeitura.pbh.gov.br/fundacao-municipal-de-cultura/centros-culturais"
+  },
+  {
+    "id": 16,
+    "nome": "Centro Cultural Vila Marçola",
+    "categoria": "Comunidade",
+    "emoji": "🎤",
+    "dor_resolvida": "A arte levada para dentro do Aglomerado da Serra. Fim do problema de mobilidade, pois o palco está dentro da comunidade.[20, 21]",
+    "descricao": "Oferece espetáculos de teatro adulto e infantil, ensaios abertos e shows musicais gerando identificação e pertencimento para os moradores.[21]",
+    "url": "https://prefeitura.pbh.gov.br/fundacao-municipal-de-cultura/centros-culturais"
+  },
+  {
+    "id": 17,
+    "nome": "Centro Cultural Padre Eustáquio",
+    "categoria": "Comunidade",
+    "emoji": "🎸",
+    "dor_resolvida": "Basta ir caminhando ou em ônibus do próprio bairro. Zero exigência de compras online ou de lidar com plataformas confusas.[20]",
+    "descricao": "Importante equipamento da região Noroeste, recebe saraus, exposições independentes e encontros voltados para famílias nos finais de semana.[20]",
+    "url": "https://prefeitura.pbh.gov.br/fundacao-municipal-de-cultura/centros-culturais"
+  },
+  {
+    "id": 18,
+    "nome": "Lagoa da Pampulha",
+    "categoria": "Ar Livre",
+    "emoji": "🚴",
+    "dor_resolvida": "Várias opções de transporte público para um passeio sem custo. É a melhor atividade para famílias extensas sem pesar no orçamento.[22]",
+    "descricao": "Cartão postal de BH. Você pode caminhar, andar de bicicleta, fazer um piquenique e ver a Igreja de São Francisco de Assis ao fundo sem pagar nada.[22]",
+    "url": "https://portalbelohorizonte.com.br/"
+  },
+  {
+    "id": 19,
+    "nome": "Praça da Liberdade",
+    "categoria": "Ar Livre",
+    "emoji": "🌴",
+    "dor_resolvida": "Aberto a todo momento e extremamente seguro para turismo. O ponto de convergência de várias das linhas de ônibus da capital.[22]",
+    "descricao": "O coração pulsante de Belo Horizonte. Traga sua canga, sente-se na grama ou aproveite as fontes em um domingo ensolarado no meio de tudo.[22]",
+    "url": "https://circuitoliberdade.com.br/"
+  },
+  {
+    "id": 20,
+    "nome": "Mercado Central de BH",
+    "categoria": "Ar Livre",
+    "emoji": "🧀",
+    "dor_resolvida": "A entrada é livre, permitindo vivenciar os cheiros e sons de Minas, mesmo que você opte por não comprar nada nas barracas.[22]",
+    "descricao": "Passear pelos corredores, conhecer o artesanato e sentir o clima vibrante do lugar é um programa cultural intenso e que não custa um centavo.[22]",
+    "url": "https://portalbelohorizonte.com.br/"
+  }
+]

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>0800 eu vou - Cultura Gratuita em BH</title>
+    <meta name="description" content="A democratização da identidade cultural belorizontina. Descubra museus, cinemas e eventos gratuitos em Belo Horizonte. Uai, pode entrar que é de graça!">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <a href="#conteudo-principal" class="skip-link">Pular para o conteúdo principal</a>
+
+    <header class="cabecalho-principal">
+        <div class="container">
+            <h1>0800 eu vou</h1>
+            <p class="tagline">A Cultura de BH pertence a você.</p>
+        </div>
+    </header>
+
+    <div id="slot-anuncio-topo" class="area-adsense" aria-hidden="true"></div>
+
+    <main id="conteudo-principal" class="container">
+        <section class="hero-bento">
+            <div class="hero-texto">
+                <h2>Uai, pode entrar que é de graça!</h2>
+                <p>Nosso guia desmistifica o acesso à cultura na capital mineira. Não importa se você é de Venda Nova, do Barreiro ou está a passeio na Savassi: os melhores rolês de BH estão aqui e você não paga nada para entrar.</p>
+            </div>
+            <div class="hero-busca">
+                <label for="busca-local" class="sr-only">Buscar por local ou evento</label>
+                <input type="search" id="busca-local" placeholder="Ex: cinema, praça, museu...">
+            </div>
+        </section>
+
+        <nav class="filtros-bento" aria-label="Filtros de categoria">
+            <button class="btn-filtro" data-categoria="todos" aria-pressed="true">Tudo</button>
+            <button class="btn-filtro" data-categoria="museu" aria-pressed="false">Museus</button>
+            <button class="btn-filtro" data-categoria="cinema" aria-pressed="false">Cinemas</button>
+            <button class="btn-filtro" data-categoria="ar-livre" aria-pressed="false">Ar Livre</button>
+            <button class="btn-filtro" data-categoria="centro-cultural" aria-pressed="false">Centros Culturais</button>
+        </nav>
+
+        <section class="resultados-cultura">
+            <h2 class="sr-only">Lista de Locais Culturais</h2>
+            <div id="grid-cultura" class="bento-grid" aria-live="polite"></div>
+        </section>
+    </main>
+
+    <div id="slot-anuncio-rodape" class="area-adsense" aria-hidden="true"></div>
+
+    <footer class="rodape-principal">
+        <div class="container">
+            <p>&copy; 2026 0800euvou.com - A democratização da identidade cultural belorizontina.</p>
+            <nav aria-label="Links institucionais">
+                <a href="sobre.html">Nossa Curadoria</a>
+                <a href="privacidade.html">Privacidade e Termos</a>
+            </nav>
+        </div>
+    </footer>
+
+    <div id="modal-local" class="modal-overlay" aria-hidden="true" role="dialog" aria-labelledby="modal-titulo" aria-modal="true">
+        <div class="modal-conteudo bento-card">
+            <button id="fechar-modal" class="btn-fechar" aria-label="Fechar detalhes">X</button>
+            <div id="modal-corpo"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

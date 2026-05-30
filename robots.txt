@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Disallow: /script.js
+Disallow: /dados.json
