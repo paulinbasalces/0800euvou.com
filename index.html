@@ -4,36 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>0800 eu vou | A Cultura de BH pertence a você</title>
-    <meta name="description" content="A democratização da identidade cultural belorizontina. Descubra museus, cinemas e eventos gratuitos em BH.">
+    <meta name="description" content="A democratização da identidade cultural belorizontina. Descubra museus, cinemas e eventos gratuitos em BH sem barreiras ocultas.">
     <meta name="robots" content="index,follow,max-image-preview:large">
-    <link class="canonical" href="https://0800euvou.com/">
+    <link rel="canonical" href="https://0800euvou.com/">
     <link rel="stylesheet" href="style.css">
 
     <meta property="og:type" content="website">
-    <meta property="og:title" content="0800 eu vou">
-    <meta property="og:description" content="A democratização da identidade cultural belorizontina.">
+    <meta property="og:title" content="0800 eu vou | Cultura Gratuita em BH">
+    <meta property="og:description" content="Mapeamos os locais exatos para cada decisão do seu fim de semana cultural.">
     <meta property="og:url" content="https://0800euvou.com/">
-
-    <link rel="manifest" href="manifest.json">
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "0800 eu vou",
-      "url": "https://0800euvou.com/"
-    }
-    </script>
+    <meta property="og:locale" content="pt_BR">
 </head>
 <body>
-    <a class="skip-link" href="#lista-ferramentas">Ir para as opções culturais</a>
+    <a class="skip-link" href="#lista-ferramentas">Ir para os locais culturais</a>
 
     <header class="cabecalho-site">
         <div class="container nav-bar">
             <a class="logotipo" href="./index.html">0800 <span>eu vou</span></a>
-            <div class="controles-a11y">
-                <button type="button" id="btn-fonte-menos" class="btn-a11y" aria-label="Diminuir fonte">A-</button>
-                <button type="button" id="btn-fonte-mais" class="btn-a11y" aria-label="Aumentar fonte">A+</button>
-                <button type="button" id="btn-tema" class="btn-a11y" aria-label="Alternar tema claro/escuro">🌓</button>
+            
+            <div class="controles-a11y" aria-label="Controles de Acessibilidade">
+                <button type="button" id="btn-fonte-menos" class="btn-a11y" aria-label="Diminuir tamanho da fonte">A-</button>
+                <button type="button" id="btn-fonte-mais" class="btn-a11y" aria-label="Aumentar tamanho da fonte">A+</button>
+                <button type="button" id="btn-tema" class="btn-a11y" aria-label="Alternar tema claro e escuro">🌓</button>
             </div>
         </div>
     </header>
@@ -42,65 +34,110 @@
         <section class="hero">
             <p class="hero-kicker">Cultura e Lazer em BH</p>
             <h1 class="hero-title">A democratização da identidade cultural belorizontina</h1>
-            <p class="hero-subtitle">Mapeamos os locais exatos para cada decisão do seu fim de semana.</p>
-
-            <div class="hero-metricas">
-                <span class="metrica-card metrica-ferramentas"><strong id="total-ferramentas">20</strong><small>locais</small></span>
-                <span class="metrica-card metrica-jornadas"><strong id="total-categorias">6</strong><small>categorias</small></span>
-                <span class="metrica-card metrica-cadastro"><strong>100%</strong><small>livre de barreiras</small></span>
+            <p class="hero-subtitle">Mapeamos os acessos, as regras e as gratuidades exatas para cada decisão do seu fim de semana.</p>
+            
+            <div class="hero-metricas" aria-label="Resumo da curadoria">
+                <span class="metrica-card metrica-ferramentas"><strong id="total-ferramentas">0</strong><small>locais listados</small></span>
+                <span class="metrica-card metrica-jornadas"><strong id="total-categorias">0</strong><small>tipos de rolê</small></span>
+                <span class="metrica-card metrica-cadastro"><strong>100%</strong><small>livre de catracas</small></span>
             </div>
-
+            
             <div class="busca-container" role="search">
-                <label class="sr-only" for="campo-busca">Pesquisar por parque, museu ou cinema</label>
+                <label class="sr-only" for="campo-busca">Pesquisar por parque, museu ou exposição</label>
                 <div class="busca-form">
-                    <input id="campo-busca" type="search" placeholder="Busque por..." autocomplete="off">
+                    <input id="campo-busca" type="search" placeholder="Busque por CCBB, Pampulha, Inhotim..." autocomplete="off">
                     <div class="busca-acoes">
                         <button type="button" id="btn-limpar-busca" class="btn-busca secundario">Limpar</button>
-                        <button type="button" id="btn-google-busca" class="btn-busca google">Buscar no Google</button>
                     </div>
                 </div>
-                <p id="google-search-status" class="google-search-status" aria-live="polite"></p>
             </div>
-
-            <nav id="bento-menu" class="bento-grid-container" aria-label="Filtros de categorias"></nav>
-        </section>
-
-        <section id="google-search-panel" class="google-search-panel hidden" aria-hidden="true">
-            <div class="google-search-header">
-                <div>
-                    <h2>Resultados da busca via Google</h2>
-                </div>
-                <button type="button" id="btn-fechar-google" class="btn-busca secundario">Fechar</button>
-            </div>
-            <div id="google-resultados"></div>
+            
+            <nav id="bento-menu" class="bento-grid-container" aria-label="Filtros por categoria"></nav>
         </section>
 
         <div class="espaco-respiro"></div>
-        <div class="area-adsense ads-vip" id="ad-top">
+        <div class="area-adsense ads-vip">
             <p class="ads-label">Publicidade</p>
         </div>
         <div class="espaco-respiro"></div>
 
-        <section class="painel-curadoria">
-            <p id="status-resultados" class="status-resultados" aria-live="polite">Carregando catálogo cultural...</p>
-            <div id="lista-ferramentas" class="grid-ferramentas"></div>
+        <section class="painel-curadoria" aria-labelledby="titulo-curadoria">
+            <div>
+                <p class="section-kicker">Nossa Curadoria</p>
+                <h2 id="titulo-curadoria">Foco em resolver o "onde ir" sem surpresas</h2>
+                <p>Nós traduzimos as regras de acesso. O portal mapeia quais dias são realmente gratuitos, se precisa retirar ingresso antes e qual é a infraestrutura do local para evitar frustrações na porta.</p>
+            </div>
+            <ul class="criterios-lista" aria-label="Critérios de seleção">
+                <li class="criterio-card criterio-utilidade"><strong>Gratuidade Real</strong><span>Informamos se o 0800 é todos os dias ou em horários específicos.</span></li>
+                <li class="criterio-card criterio-acesso"><strong>Fontes Oficiais</strong><span>Links direcionam para as bilheterias oficiais.</span></li>
+                <li class="criterio-card criterio-seguranca"><strong>Sem Barreiras</strong><span>Avisamos sobre acessibilidade e lotação.</span></li>
+                <li class="criterio-card criterio-decisao"><strong>Decisão Clara</strong><span>Filtros pensados no seu estilo de fim de semana.</span></li>
+            </ul>
         </section>
+
+        <p id="status-resultados" class="status-resultados" aria-live="polite">Carregando catálogo cultural...</p>
+        <div id="lista-ferramentas"></div>
     </main>
 
     <div id="modal-overlay" class="modal-overlay hidden" onclick="fecharAoClicarFora(event)" aria-hidden="true">
-        <div class="modal-conteudo" role="dialog" aria-labelledby="modal-titulo" aria-modal="true">
-            <button type="button" id="fechar-modal" class="btn-fechar-modal" aria-label="Fechar detalhes">X</button>
-            <div id="modal-corpo"></div>
+        <div id="modal-ferramenta" class="modal-content" role="dialog" aria-modal="true" aria-labelledby="artigo-titulo">
+            <button type="button" class="btn-fechar" onclick="fecharTodosModais()" aria-label="Fechar janela">✕</button>
+            
+            <div class="modal-header-compacto">
+                <span id="artigo-emoji" class="emoji-medio" aria-hidden="true"></span>
+                <div>
+                    <h2 id="artigo-titulo"></h2>
+                    <span id="artigo-categoria" class="tag-categoria"></span>
+                </div>
+            </div>
+
+            <div class="dor-box">
+                <strong>💡 O Pulo do Gato:</strong>
+                <p id="artigo-dor"></p>
+            </div>
+
+            <div class="artigo-corpo">
+                <p id="artigo-descricao"></p>
+                <dl class="detalhes-editoriais">
+                    <div>
+                        <dt>Ideal Para</dt>
+                        <dd id="artigo-melhor-para"></dd>
+                    </div>
+                    <div>
+                        <dt>Ponto de Atenção</dt>
+                        <dd id="artigo-cuidado"></dd>
+                    </div>
+                </dl>
+            </div>
+
+            <div class="acoes-ferramenta">
+                <a id="artigo-link" href="#" target="_blank" rel="noopener noreferrer" class="btn-primario">Acessar Ingresso / Site Oficial</a>
+                <div class="share-buttons">
+                    <p class="share-title">Chamar a galera pro rolê:</p>
+                    <div class="share-icons" id="botoes-compartilhamento"></div>
+                </div>
+            </div>
+            
+            <div class="area-adsense ads-modal">
+                <p class="ads-label">Publicidade</p>
+            </div>
         </div>
     </div>
 
     <footer class="rodape-site">
-        <div class="container container-footer">
-            <p>&copy; 2026 0800euvou.com</p>
-            <nav aria-label="Navegação do rodapé">
-                <a href="sobre.html">Nossa Curadoria</a>
-                <a href="privacidade.html">Privacidade</a>
-            </nav>
+        <div class="container">
+            <article class="sobre-portal-rodape">
+                <h2>0800 eu vou | Cultura de BH</h2>
+                <p>Mapeamos museus, parques e eventos gratuitos na capital mineira para garantir que a arte e o lazer cheguem a todos sem barreiras ocultas.</p>
+            </article>
+
+            <div class="rodape-main">
+                <p><strong>0800 eu vou</strong> &copy; 2026. Democratizando a cidade.</p>
+                <nav class="links-rodape" aria-label="Links institucionais">
+                    <a href="sobre.html">Sobre a curadoria</a>
+                    <a href="privacidade.html">Privacidade</a>
+                </nav>
+            </div>
         </div>
     </footer>
 

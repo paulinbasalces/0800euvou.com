@@ -1,271 +1,259 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Referências do DOM
-    const gridFerramentas = document.getElementById('lista-ferramentas');
-    const bentoMenu = document.getElementById('bento-menu');
-    const campoBusca = document.getElementById('campo-busca');
-    const btnLimpar = document.getElementById('btn-limpar-busca');
-    const statusResultados = document.getElementById('status-resultados');
-    const totalFerramentasStr = document.getElementById('total-ferramentas');
-    const totalCategoriasStr = document.getElementById('total-categorias');
-    
-    // Controles Modal
-    const modalOverlay = document.getElementById('modal-overlay');
-    const modalCorpo = document.getElementById('modal-corpo');
-    const btnFecharModal = document.getElementById('fechar-modal');
-    
-    // Google Search Engine
-    const btnGoogleBusca = document.getElementById('btn-google-busca');
-    const googlePanel = document.getElementById('google-search-panel');
-    const btnFecharGoogle = document.getElementById('btn-fechar-google');
-    const googleResultados = document.getElementById('google-resultados');
-    const googleStatus = document.getElementById('google-search-status');
+    let baseDeDados = [];
+    let categoriaAtiva = 'Todas';
+    const htmlElement = document.documentElement;
+    const SITE_URL = 'https://0800euvou.com/';
 
-    // Controles Acessibilidade
-    const btnTema = document.getElementById('btn-tema');
-    const btnFonteMais = document.getElementById('btn-fonte-mais');
-    const btnFonteMenos = document.getElementById('btn-fonte-menos');
-    let tamanhoFonte = 16; 
+    // --- Acessibilidade: Tema e Fonte ---
+    const temaSalvo = localStorage.getItem('tema');
+    if (temaSalvo === 'dark') htmlElement.setAttribute('data-theme', 'dark');
 
-    let dadosOriginais =;
-    let categoriasSet = new Set();
-
-    /* =========================================================
-       1. CONTROLE DE ACESSIBILIDADE E TEMA VISUAL
-       ========================================================= */
-    btnTema.addEventListener('click', () => {
-        const html = document.documentElement;
-        const temaAtual = html.getAttribute('data-theme');
-        html.setAttribute('data-theme', temaAtual === 'light'? 'dark' : 'light');
-    });
-
-    btnFonteMais.addEventListener('click', () => {
-        if(tamanhoFonte < 24) {
-            tamanhoFonte += 2;
-            document.documentElement.style.fontSize = `${tamanhoFonte}px`;
+    document.getElementById('btn-tema').addEventListener('click', () => {
+        if (htmlElement.getAttribute('data-theme') === 'dark') {
+            htmlElement.removeAttribute('data-theme');
+            localStorage.setItem('tema', 'light');
+        } else {
+            htmlElement.setAttribute('data-theme', 'dark');
+            localStorage.setItem('tema', 'dark');
         }
     });
 
-    btnFonteMenos.addEventListener('click', () => {
-        if(tamanhoFonte > 12) {
-            tamanhoFonte -= 2;
-            document.documentElement.style.fontSize = `${tamanhoFonte}px`;
+    let fontScale = parseInt(localStorage.getItem('fontScale'), 10) || 100;
+    const atualizarFonte = () => {
+        htmlElement.style.fontSize = fontScale + '%';
+        localStorage.setItem('fontScale', fontScale);
+    };
+    atualizarFonte();
+
+    document.getElementById('btn-fonte-mais').addEventListener('click', () => {
+        if (fontScale < 130) {
+            fontScale += 10;
+            atualizarFonte();
         }
     });
 
-    /* =========================================================
-       2. CARREGAMENTO E INGESTÃO DE DADOS (FETCH)
-       ========================================================= */
-    async function carregarDados() {
-        try {
-            const resposta = await fetch('dados.json');
-            if (!resposta.ok) throw new Error('Falha de rede');
-            dadosOriginais = await resposta.json();
-            
-            if (totalFerramentasStr) totalFerramentasStr.textContent = dadosOriginais.length;
-            
-            extrairCategorias();
-            renderizarFiltros();
-            renderizarGrid(dadosOriginais);
-            verificarUrlModal(); // Dispara se o usuário vier de um link compartilhado (History API)
-        } catch (erro) {
-            statusResultados.textContent = 'Erro ao processar o arquivo de curadoria local.';
-            console.error(erro);
+    document.getElementById('btn-fonte-menos').addEventListener('click', () => {
+        if (fontScale > 90) {
+            fontScale -= 10;
+            atualizarFonte();
         }
-    }
+    });
+    // ------------------------------------
 
-    /* =========================================================
-       3. GERAÇÃO DINÂMICA DO BENTO MENU
-       ========================================================= */
-    function extrairCategorias() {
-        dadosOriginais.forEach(item => categoriasSet.add(item.categoria));
-        if (totalCategoriasStr) totalCategoriasStr.textContent = categoriasSet.size;
-    }
+    // --- Metadados Editoriais (Específico 0800 eu vou) ---
+    const categoriasMeta = {
+        'Museus e Galerias': { melhorPara: 'Quem curte explorar exposições e arquitetura histórica sem pressa.', cuidado: 'Muitos museus exigem retirada prévia de ingressos gratuitos online para evitar filas.' },
+        'Parques e Praças': { melhorPara: 'Famílias, piqueniques e atividades ao ar livre no final de semana.', cuidado: 'Atenção aos horários de fechamento e regras para entrada com animais de estimação.' },
+        'Cinemas e Teatros': { melhorPara: 'Programação noturna e mostras culturais independentes.', cuidado: 'A lotação é limitada. Os ingressos gratuitos geralmente esgotam 1 hora antes da sessão.' },
+        'Festivais de Rua': { melhorPara: 'Quem gosta de muvuca, música ao vivo e gastronomia popular.', cuidado: 'Eventos sazonais podem sofrer alterações por conta de chuvas. Confirme no Instagram oficial.' },
+        'Centros Culturais': { melhorPara: 'Oficinas gratuitas, bibliotecas públicas e eventos literários.', cuidado: 'Algumas oficinas gratuitas exigem inscrição prévia via formulário durante a semana.' }
+    };
 
-    function renderizarFiltros() {
-        bentoMenu.innerHTML = `<button type="button" class="btn-filtro ativo" data-cat="todas">Todas as Opções</button>`;
-        categoriasSet.forEach(cat => {
-            bentoMenu.innerHTML += `<button type="button" class="btn-filtro" data-cat="${cat}">${cat}</button>`;
+    const seletor = {
+        busca: document.getElementById('campo-busca'),
+        limparBusca: document.getElementById('btn-limpar-busca'),
+        bentoMenu: document.getElementById('bento-menu'),
+        listaFerramentas: document.getElementById('lista-ferramentas'),
+        statusResultados: document.getElementById('status-resultados')
+    };
+
+    fetch('dados.json')
+        .then(res => {
+            if (!res.ok) throw new Error('Falha no JSON');
+            return res.json();
+        })
+        .then(data => {
+            baseDeDados = data || [];
+            document.getElementById('total-ferramentas').textContent = baseDeDados.length;
+            document.getElementById('total-categorias').textContent = new Set(baseDeDados.map(i => i.categoria)).size;
+            renderizarFiltros(baseDeDados);
+            renderizarInterface();
+            aplicarBuscaDaUrl();
+            abrirFerramentaDaUrl();
+        })
+        .catch(erro => {
+            seletor.listaFerramentas.innerHTML = '<div style="text-align:center; padding: 40px; color: var(--text-muted);">Erro ao carregar o diretório cultural. Verifique o arquivo JSON.</div>';
         });
 
-        document.querySelectorAll('.btn-filtro').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                document.querySelectorAll('.btn-filtro').forEach(b => b.classList.remove('ativo'));
-                e.target.classList.add('ativo');
-                
-                const catEscolhida = e.target.getAttribute('data-cat');
-                if(catEscolhida === 'todas') {
-                    renderizarGrid(dadosOriginais);
-                    statusResultados.textContent = `Exibindo catálogo completo de cultura (0800).`;
-                } else {
-                    const filtrados = dadosOriginais.filter(i => i.categoria === catEscolhida);
-                    renderizarGrid(filtrados);
-                    statusResultados.textContent = `Listando apenas opções de ${catEscolhida}.`;
-                }
+    seletor.busca.addEventListener('input', () => {
+        atualizarParametroBusca();
+        renderizarInterface();
+    });
+
+    seletor.limparBusca.addEventListener('click', () => {
+        seletor.busca.value = '';
+        categoriaAtiva = 'Todas';
+        atualizarUrl({ q: null, modal: null });
+        renderizarFiltros(baseDeDados);
+        renderizarInterface();
+    });
+
+    function renderizarFiltros(ferramentas) {
+        const categorias = ['Todas', ...new Set(ferramentas.map(item => item.categoria))];
+        seletor.bentoMenu.innerHTML = categorias.map(categoria => {
+            const ativo = categoria === categoriaAtiva ? 'true' : 'false';
+            const emoji = categoria === 'Todas' ? '📍' : ferramentas.find(item => item.categoria === categoria)?.emoji;
+            const total = categoria === 'Todas' ? ferramentas.length : ferramentas.filter(item => item.categoria === categoria).length;
+
+            return `
+                <button type="button" class="bento-card" data-categoria="${categoria}" aria-pressed="${ativo}">
+                    <span class="bento-emoji" aria-hidden="true">${emoji || '📍'}</span>
+                    <span class="bento-title">${categoria}</span>
+                    <span class="bento-count">${total}</span>
+                </button>
+            `;
+        }).join('');
+
+        seletor.bentoMenu.querySelectorAll('.bento-card').forEach(botao => {
+            botao.addEventListener('click', () => {
+                categoriaAtiva = botao.dataset.categoria;
+                renderizarFiltros(baseDeDados);
+                renderizarInterface();
+                document.getElementById('lista-ferramentas').scrollIntoView({ behavior: 'smooth' });
             });
         });
     }
 
-    function renderizarGrid(dados) {
-        gridFerramentas.innerHTML = '';
-        dados.forEach(item => {
-            const card = document.createElement('article');
-            card.className = 'card-ferramenta';
-            card.innerHTML = `
-                <div>
-                    <div class="card-cabecalho">
-                        <span class="card-emoji" aria-hidden="true">${item.emoji}</span>
-                        <span class="card-categoria">${item.categoria}</span>
-                    </div>
-                    <h3 class="card-titulo">${item.nome}</h3>
-                    <p class="card-descricao">${item.descricao.substring(0, 90)}...</p>
-                    <div class="card-dor">
-                        <strong>💡 O pulo do gato:</strong><br>${item.dor_resolvida}
-                    </div>
-                </div>
-                <div class="card-acoes">
-                    <button class="btn-acao btn-detalhes" onclick="abrirModal(${item.id})" aria-haspopup="dialog">Ver Mais</button>
-                    <button class="btn-acao btn-compartilhar" onclick="compartilharNative('${item.nome}', '${window.location.origin}${window.location.pathname}?modal=${item.id}')">Indicar</button>
-                </div>
-            `;
-            gridFerramentas.appendChild(card);
-        });
-    }
-
-    /* =========================================================
-       4. BUSCA DINÂMICA (DEBOUNCE + NORMALIZAÇÃO)
-       ========================================================= */
-    function removerAcentos(str) {
-        return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
-    }
-
-    let timeoutBusca;
-    campoBusca.addEventListener('input', (e) => {
-        clearTimeout(timeoutBusca);
-        const termo = removerAcentos(e.target.value);
+    function renderizarInterface() {
+        const termo = seletor.busca.value.trim().toLowerCase();
+        const normalizar = (str) => str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+        const termoNorm = normalizar(termo);
         
-        timeoutBusca = setTimeout(() => {
-            if(termo.trim() === '') {
-                renderizarGrid(dadosOriginais);
-                statusResultados.textContent = 'Catálogo completo.';
-                return;
-            }
-            
-            const resultados = dadosOriginais.filter(item => 
-                removerAcentos(item.nome).includes(termo) || 
-                removerAcentos(item.descricao).includes(termo) ||
-                removerAcentos(item.dor_resolvida).includes(termo)
-            );
-            renderizarGrid(resultados);
-            statusResultados.textContent = `Encontrados ${resultados.length} locais para sua busca.`;
-        }, 350); 
-    });
+        const filtradas = baseDeDados.filter(item => {
+            const matchTexto = termo === '' || 
+                               normalizar(item.nome.toLowerCase()).includes(termoNorm) || 
+                               normalizar(item.dor_resolvida.toLowerCase()).includes(termoNorm) || 
+                               normalizar(item.descricao.toLowerCase()).includes(termoNorm);
+            const matchCat = categoriaAtiva === 'Todas' || item.categoria === categoriaAtiva;
+            return matchTexto && matchCat;
+        });
 
-    btnLimpar.addEventListener('click', () => {
-        campoBusca.value = '';
-        renderizarGrid(dadosOriginais);
-        statusResultados.textContent = 'Catálogo restaurado.';
-        document.querySelectorAll('.btn-filtro').forEach(b => b.classList.remove('ativo'));
-        document.querySelector('.btn-filtro[data-cat="todas"]').classList.add('ativo');
-    });
+        seletor.statusResultados.textContent = `${filtradas.length} de ${baseDeDados.length} locais disponíveis exibidos.`;
 
-    // Mock da API Programática do Google (GCS)
-    btnGoogleBusca.addEventListener('click', () => {
-        const termo = campoBusca.value.trim();
-        if(termo === '') {
-            googleStatus.textContent = "Digite um termo para pesquisar via Google.";
+        if (!filtradas.length) {
+            seletor.listaFerramentas.innerHTML = '<div style="text-align:center; padding: 40px; color: var(--text-muted);">Nenhum local encontrado com este perfil.</div>';
             return;
         }
-        googlePanel.classList.remove('hidden');
-        googlePanel.setAttribute('aria-hidden', 'false');
-        googleResultados.innerHTML = `<p style="color: var(--text-muted)">Painel reservado para injeção do <em>Google Programmable Search Engine</em>. Resultados globais da web para: <strong>${termo}</strong></p>`;
-    });
 
-    btnFecharGoogle.addEventListener('click', () => {
-        googlePanel.classList.add('hidden');
-        googlePanel.setAttribute('aria-hidden', 'true');
-    });
+        const categoriasInfo = filtradas.reduce((acc, item) => {
+            if (!acc[item.categoria]) acc[item.categoria] = [];
+            acc[item.categoria].push(item);
+            return acc;
+        }, {});
 
-    /* =========================================================
-       5. COMPARTILHAMENTO (WEB SHARE API)
-       ========================================================= */
-    window.compartilharNative = async (nome, url) => {
-        if (navigator.share) {
-            try {
-                await navigator.share({
-                    title: `0800 eu vou: ${nome}`,
-                    text: `Dá uma olhada nesse rolê de graça em BH que eu achei: ${nome}`,
-                    url: url
-                });
-            } catch (err) {
-                console.log('Compartilhamento cancelado', err);
-            }
-        } else {
-            navigator.clipboard.writeText(url).then(() => {
-                alert('O link direto para este local foi copiado para sua área de transferência!');
-            });
-        }
-    };
+        seletor.listaFerramentas.innerHTML = Object.keys(categoriasInfo).map((categoria, index, arr) => {
+            const itens = categoriasInfo[categoria];
+            const cards = itens.map(item => `
+                <article class="card">
+                    <div class="card-conteudo">
+                        <div class="card-topo">
+                            <span class="card-emoji">${item.emoji}</span>
+                            <span class="card-tag">${item.categoria}</span>
+                        </div>
+                        <h3>${item.nome}</h3>
+                        <p class="card-desc">${item.dor_resolvida}</p>
+                        <p class="card-editorial">${item.descricao}</p>
+                    </div>
+                    <div class="card-footer">
+                        <button type="button" class="btn-card-abrir" onclick="abrirModalFerramenta('${item.id}')">Dicas de Acesso</button>
+                        <a class="link-card-oficial" href="${item.url}" target="_blank" rel="noopener noreferrer">Site oficial ➔</a>
+                    </div>
+                </article>
+            `).join('');
 
-    /* =========================================================
-       6. HISTORY API (METADADOS DE URL EM TEMPO REAL)
-       ========================================================= */
-    window.abrirModal = (id) => {
-        const item = dadosOriginais.find(i => i.id === id);
-        if(!item) return;
+            // AdSense In-feed (A cada categoria/seção, injeta publicidade para manter o CLS intacto)
+            const ad = index < arr.length - 1 ? `<div class="area-adsense ads-home"><p class="ads-label">Publicidade</p></div>` : '';
 
-        modalCorpo.innerHTML = `
-            <h2 id="modal-titulo" style="color: var(--accent-primary); margin-bottom: 5px;">${item.nome}</h2>
-            <span class="card-categoria" style="display:inline-block; margin-bottom: 20px;">${item.emoji} ${item.categoria}</span>
-            <p style="color: var(--text-main); line-height: 1.6;">${item.descricao}</p>
-            <div class="card-dor" style="margin-top: 20px;">
-                <strong>Como esse guia facilita a sua vida:</strong><br>${item.dor_resolvida}
-            </div>
-            <a href="${item.url}" target="_blank" rel="noopener noreferrer" style="display: block; text-align: center; background: var(--accent-primary); color: #FFF; padding: 15px; border-radius: var(--radius-pill); text-decoration: none; font-weight: bold; margin-top: 30px;">Abrir Site Oficial</a>
-        `;
-        
-        modalOverlay.classList.remove('hidden');
-        modalOverlay.setAttribute('aria-hidden', 'false');
-        
-        // Push State - Muda a URL sem recarregar a página
-        const urlAtual = new URL(window.location);
-        urlAtual.searchParams.set('modal', id);
-        window.history.pushState({ modal: id }, `${item.nome} | 0800 eu vou`, urlAtual);
-        document.title = `${item.nome} | 0800 eu vou`;
-    };
-
-    function fecharModalLocal() {
-        modalOverlay.classList.add('hidden');
-        modalOverlay.setAttribute('aria-hidden', 'true');
-        
-        // Remove param e limpa a rota
-        const urlAtual = new URL(window.location);
-        urlAtual.searchParams.delete('modal');
-        window.history.replaceState({}, document.title, urlAtual);
-        document.title = "0800 eu vou | A Cultura de BH pertence a você";
+            return `
+                <section class="sessao-categoria">
+                    <h2 class="sessao-titulo">${itens[0].emoji} ${categoria}</h2>
+                    <div class="grid-cards">${cards}</div>
+                </section>
+                ${ad}
+            `;
+        }).join('');
     }
 
-    btnFecharModal.addEventListener('click', fecharModalLocal);
-    
-    window.fecharAoClicarFora = (e) => {
-        if (e.target === modalOverlay) fecharModalLocal();
+    window.abrirModalFerramenta = function(id, alterarUrl = true) {
+        // Suporta IDs como strings (ex: "museu-artes") ou numéricos
+        const ferramenta = baseDeDados.find(item => String(item.id) === String(id));
+        if (!ferramenta) return;
+
+        const meta = categoriasMeta[ferramenta.categoria] || { melhorPara: "Todo belorizontino que quer aproveitar a cidade.", cuidado: "Confirme a programação atualizada no site oficial antes de sair de casa." };
+        
+        document.getElementById('artigo-emoji').textContent = ferramenta.emoji;
+        document.getElementById('artigo-categoria').textContent = ferramenta.categoria;
+        document.getElementById('artigo-titulo').textContent = ferramenta.nome;
+        document.getElementById('artigo-dor').textContent = ferramenta.dor_resolvida;
+        document.getElementById('artigo-descricao').textContent = ferramenta.descricao;
+        document.getElementById('artigo-melhor-para').textContent = meta.melhorPara;
+        document.getElementById('artigo-cuidado').textContent = meta.cuidado;
+        document.getElementById('artigo-link').href = ferramenta.url;
+
+        renderizarCompartilhamento(ferramenta);
+
+        document.getElementById('modal-overlay').classList.remove('hidden');
+        document.body.classList.add('modal-open');
+
+        if (alterarUrl) atualizarUrl({ modal: ferramenta.id });
     };
 
-    window.addEventListener('popstate', (e) => {
-        if (e.state && e.state.modal) {
-            abrirModal(e.state.modal);
-        } else {
-            fecharModalLocal();
-        }
-    });
+    window.fecharTodosModais = function() {
+        document.getElementById('modal-overlay').classList.add('hidden');
+        document.body.classList.remove('modal-open');
+        atualizarUrl({ modal: null });
+    };
 
-    function verificarUrlModal() {
-        const params = new URLSearchParams(window.location.search);
-        const modalId = params.get('modal');
-        if (modalId) {
-            abrirModal(parseInt(modalId));
+    window.fecharAoClicarFora = function(event) {
+        if (event.target.id === 'modal-overlay') fecharTodosModais();
+    };
+
+    function renderizarCompartilhamento(ferramenta) {
+        const container = document.getElementById('botoes-compartilhamento');
+        container.innerHTML = '';
+        
+        const urlCompartilhamento = `${SITE_URL}?modal=${ferramenta.id}`;
+        
+        if (navigator.share && window.innerWidth <= 768) {
+            const btn = document.createElement('button');
+            btn.className = 'btn-share native';
+            btn.textContent = 'Compartilhar Rolê';
+            btn.onclick = () => navigator.share({ title: ferramenta.nome, text: ferramenta.dor_resolvida, url: urlCompartilhamento });
+            container.appendChild(btn);
+        } else {
+            const btnCopiar = document.createElement('button');
+            btnCopiar.className = 'btn-share native';
+            btnCopiar.textContent = 'Copiar link deste local';
+            btnCopiar.onclick = () => {
+                navigator.clipboard.writeText(urlCompartilhamento);
+                btnCopiar.textContent = 'Copiado!';
+                setTimeout(() => btnCopiar.textContent = 'Copiar link deste local', 2000);
+            };
+            container.appendChild(btnCopiar);
         }
     }
 
-    // Gatilho inicial
-    carregarDados();
+    function atualizarUrl(params, substituir = false) {
+        const url = new URL(window.location.href);
+        Object.entries(params).forEach(([chave, valor]) => {
+            if (valor) url.searchParams.set(chave, valor);
+            else url.searchParams.delete(chave);
+        });
+        const metodo = substituir ? 'replaceState' : 'pushState';
+        window.history[metodo]({}, '', url);
+    }
+
+    function atualizarParametroBusca() {
+        atualizarUrl({ q: seletor.busca.value || null, modal: null }, true);
+    }
+
+    function aplicarBuscaDaUrl() {
+        const termo = new URL(window.location.href).searchParams.get('q');
+        if (termo) { seletor.busca.value = termo; renderizarInterface(); }
+    }
+
+    function abrirFerramentaDaUrl() {
+        const ferramenta = new URL(window.location.href).searchParams.get('modal') || new URL(window.location.href).searchParams.get('ferramenta');
+        if (ferramenta) window.abrirModalFerramenta(ferramenta, false);
+    }
 });
