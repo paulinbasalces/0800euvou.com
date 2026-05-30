@@ -1,68 +1,108 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>0800 eu vou - Cultura Gratuita em BH</title>
-    <meta name="description" content="A democratização da identidade cultural belorizontina. Descubra museus, cinemas e eventos gratuitos em Belo Horizonte. Uai, pode entrar que é de graça!">
+    <title>0800 eu vou | A Cultura de BH pertence a você</title>
+    <meta name="description" content="A democratização da identidade cultural belorizontina. Descubra museus, cinemas e eventos gratuitos em BH.">
+    <meta name="robots" content="index,follow,max-image-preview:large">
+    <link class="canonical" href="https://0800euvou.com/">
     <link rel="stylesheet" href="style.css">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="0800 eu vou">
+    <meta property="og:description" content="A democratização da identidade cultural belorizontina.">
+    <meta property="og:url" content="https://0800euvou.com/">
+
+    <link rel="manifest" href="manifest.json">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "0800 eu vou",
+      "url": "https://0800euvou.com/"
+    }
+    </script>
 </head>
 <body>
-    <a href="#conteudo-principal" class="skip-link">Pular para o conteúdo principal</a>
+    <a class="skip-link" href="#lista-ferramentas">Ir para as opções culturais</a>
 
-    <header class="cabecalho-principal">
-        <div class="container">
-            <h1>0800 eu vou</h1>
-            <p class="tagline">A Cultura de BH pertence a você.</p>
+    <header class="cabecalho-site">
+        <div class="container nav-bar">
+            <a class="logotipo" href="./index.html">0800 <span>eu vou</span></a>
+            <div class="controles-a11y">
+                <button type="button" id="btn-fonte-menos" class="btn-a11y" aria-label="Diminuir fonte">A-</button>
+                <button type="button" id="btn-fonte-mais" class="btn-a11y" aria-label="Aumentar fonte">A+</button>
+                <button type="button" id="btn-tema" class="btn-a11y" aria-label="Alternar tema claro/escuro">🌓</button>
+            </div>
         </div>
     </header>
 
-    <div id="slot-anuncio-topo" class="area-adsense" aria-hidden="true"></div>
+    <main class="container" id="conteudo-principal">
+        <section class="hero">
+            <p class="hero-kicker">Cultura e Lazer em BH</p>
+            <h1 class="hero-title">A democratização da identidade cultural belorizontina</h1>
+            <p class="hero-subtitle">Mapeamos os locais exatos para cada decisão do seu fim de semana.</p>
 
-    <main id="conteudo-principal" class="container">
-        <section class="hero-bento">
-            <div class="hero-texto">
-                <h2>Uai, pode entrar que é de graça!</h2>
-                <p>Nosso guia desmistifica o acesso à cultura na capital mineira. Não importa se você é de Venda Nova, do Barreiro ou está a passeio na Savassi: os melhores rolês de BH estão aqui e você não paga nada para entrar.</p>
+            <div class="hero-metricas">
+                <span class="metrica-card metrica-ferramentas"><strong id="total-ferramentas">20</strong><small>locais</small></span>
+                <span class="metrica-card metrica-jornadas"><strong id="total-categorias">6</strong><small>categorias</small></span>
+                <span class="metrica-card metrica-cadastro"><strong>100%</strong><small>livre de barreiras</small></span>
             </div>
-            <div class="hero-busca">
-                <label for="busca-local" class="sr-only">Buscar por local ou evento</label>
-                <input type="search" id="busca-local" placeholder="Ex: cinema, praça, museu...">
+
+            <div class="busca-container" role="search">
+                <label class="sr-only" for="campo-busca">Pesquisar por parque, museu ou cinema</label>
+                <div class="busca-form">
+                    <input id="campo-busca" type="search" placeholder="Busque por..." autocomplete="off">
+                    <div class="busca-acoes">
+                        <button type="button" id="btn-limpar-busca" class="btn-busca secundario">Limpar</button>
+                        <button type="button" id="btn-google-busca" class="btn-busca google">Buscar no Google</button>
+                    </div>
+                </div>
+                <p id="google-search-status" class="google-search-status" aria-live="polite"></p>
             </div>
+
+            <nav id="bento-menu" class="bento-grid-container" aria-label="Filtros de categorias"></nav>
         </section>
 
-        <nav class="filtros-bento" aria-label="Filtros de categoria">
-            <button class="btn-filtro" data-categoria="todos" aria-pressed="true">Tudo</button>
-            <button class="btn-filtro" data-categoria="museu" aria-pressed="false">Museus</button>
-            <button class="btn-filtro" data-categoria="cinema" aria-pressed="false">Cinemas</button>
-            <button class="btn-filtro" data-categoria="ar-livre" aria-pressed="false">Ar Livre</button>
-            <button class="btn-filtro" data-categoria="centro-cultural" aria-pressed="false">Centros Culturais</button>
-        </nav>
+        <section id="google-search-panel" class="google-search-panel hidden" aria-hidden="true">
+            <div class="google-search-header">
+                <div>
+                    <h2>Resultados da busca via Google</h2>
+                </div>
+                <button type="button" id="btn-fechar-google" class="btn-busca secundario">Fechar</button>
+            </div>
+            <div id="google-resultados"></div>
+        </section>
 
-        <section class="resultados-cultura">
-            <h2 class="sr-only">Lista de Locais Culturais</h2>
-            <div id="grid-cultura" class="bento-grid" aria-live="polite"></div>
+        <div class="espaco-respiro"></div>
+        <div class="area-adsense ads-vip" id="ad-top">
+            <p class="ads-label">Publicidade</p>
+        </div>
+        <div class="espaco-respiro"></div>
+
+        <section class="painel-curadoria">
+            <p id="status-resultados" class="status-resultados" aria-live="polite">Carregando catálogo cultural...</p>
+            <div id="lista-ferramentas" class="grid-ferramentas"></div>
         </section>
     </main>
 
-    <div id="slot-anuncio-rodape" class="area-adsense" aria-hidden="true"></div>
-
-    <footer class="rodape-principal">
-        <div class="container">
-            <p>&copy; 2026 0800euvou.com - A democratização da identidade cultural belorizontina.</p>
-            <nav aria-label="Links institucionais">
-                <a href="sobre.html">Nossa Curadoria</a>
-                <a href="privacidade.html">Privacidade e Termos</a>
-            </nav>
-        </div>
-    </footer>
-
-    <div id="modal-local" class="modal-overlay" aria-hidden="true" role="dialog" aria-labelledby="modal-titulo" aria-modal="true">
-        <div class="modal-conteudo bento-card">
-            <button id="fechar-modal" class="btn-fechar" aria-label="Fechar detalhes">X</button>
+    <div id="modal-overlay" class="modal-overlay hidden" onclick="fecharAoClicarFora(event)" aria-hidden="true">
+        <div class="modal-conteudo" role="dialog" aria-labelledby="modal-titulo" aria-modal="true">
+            <button type="button" id="fechar-modal" class="btn-fechar-modal" aria-label="Fechar detalhes">X</button>
             <div id="modal-corpo"></div>
         </div>
     </div>
+
+    <footer class="rodape-site">
+        <div class="container container-footer">
+            <p>&copy; 2026 0800euvou.com</p>
+            <nav aria-label="Navegação do rodapé">
+                <a href="sobre.html">Nossa Curadoria</a>
+                <a href="privacidade.html">Privacidade</a>
+            </nav>
+        </div>
+    </footer>
 
     <script src="script.js"></script>
 </body>
