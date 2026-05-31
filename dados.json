@@ -269,7 +269,6 @@
     "descricao": "Um dos edifícios mais bonitos do centro de BH. Frequentemente sedia apresentações gratuitas de música erudita, popular e corais abertas ao público.",
     "url": "https://www.ufmg.br/conservatorio/"
   },
-  ,
   {
     "id": "31",
     "nome": "Samba da Meia-Noite",
@@ -441,5 +440,4 @@
     "descricao": "Sediado no Casarão do Parque Municipal, preserva a memória do congado, folias de reis, capoeira e artesanato de raiz de Minas Gerais.",
     "url": "https://prefeitura.pbh.gov.br/fundacao-municipal-de-cultura/crcp"
   }
-]
 ]
