@@ -1,9 +1,15 @@
-",
+[
+  {
+    "id": "1",
+    "nome": "Cine Santa Tereza",
+    "categoria": "Cinema",
+    "emoji": "🎬",
+    "dor_resolvida": "Sessões gratuitas perto da estação de metrô para fugir dos preços dos shoppings.",
     "descricao": "Cinema de rua clássico da prefeitura. Tem sessões infantis à tarde e mostras independentes à noite, além de fácil acesso pelo metrô Santa Tereza.[1]",
     "url": "https://prefeitura.pbh.gov.br/fundacao-municipal-de-cultura/cinema/cinesantatereza"
   },
   {
-    "id": 2,
+    "id": "2",
     "nome": "Cine Humberto Mauro",
     "categoria": "Cinema",
     "emoji": "🎞️",
@@ -12,7 +18,7 @@
     "url": "https://www.cinehumbertomauromais.com/programacao"
   },
   {
-    "id": 3,
+    "id": "3",
     "nome": "Centro Cultural Banco do Brasil (CCBB BH)",
     "categoria": "Centro Cultural",
     "emoji": "🏛️",
@@ -21,7 +27,7 @@
     "url": "https://ccbb.com.br/belo-horizonte/"
   },
   {
-    "id": 4,
+    "id": "4",
     "nome": "Casa Fiat de Cultura",
     "categoria": "Museu",
     "emoji": "🎨",
@@ -30,7 +36,7 @@
     "url": "https://casafiatdecultura.com.br/"
   },
   {
-    "id": 5,
+    "id": "5",
     "nome": "SESI Museu de Artes e Ofícios",
     "categoria": "Museu",
     "emoji": "⚒️",
@@ -39,7 +45,7 @@
     "url": "https://mao.com.br/"
   },
   {
-    "id": 6,
+    "id": "6",
     "nome": "Museu da Moda (MUMO)",
     "categoria": "Museu",
     "emoji": "👗",
@@ -48,7 +54,7 @@
     "url": "https://prefeitura.pbh.gov.br/fundacao-municipal-de-cultura/museus/mumo"
   },
   {
-    "id": 7,
+    "id": "7",
     "nome": "Palácio da Liberdade",
     "categoria": "Patrimônio",
     "emoji": "👑",
@@ -57,7 +63,7 @@
     "url": "https://palaciodaliberdade.com.br/"
   },
   {
-    "id": 8,
+    "id": "8",
     "nome": "Memorial Minas Gerais Vale",
     "categoria": "Museu",
     "emoji": "⛰️",
@@ -66,7 +72,7 @@
     "url": "https://memorialvale.org/pt/"
   },
   {
-    "id": 9,
+    "id": "9",
     "nome": "Museu Histórico Abílio Barreto",
     "categoria": "Patrimônio",
     "emoji": "🕰️",
@@ -75,7 +81,7 @@
     "url": "https://portalbelohorizonte.com.br/o-que-fazer/arte-e-cultura/museus/museu-historico-abilio-barreto-mhab"
   },
   {
-    "id": 10,
+    "id": "10",
     "nome": "Museu da Imagem e do Som (MIS)",
     "categoria": "Centro Cultural",
     "emoji": "📻",
@@ -84,7 +90,7 @@
     "url": "https://prefeitura.pbh.gov.br/fundacao-municipal-de-cultura/museus/imagemesom"
   },
   {
-    "id": 11,
+    "id": "11",
     "nome": "Espaço do Conhecimento UFMG",
     "categoria": "Conhecimento",
     "emoji": "🔭",
@@ -93,7 +99,7 @@
     "url": "https://portalbelohorizonte.com.br/"
   },
   {
-    "id": 12,
+    "id": "12",
     "nome": "Biblioteca Pública Estadual",
     "categoria": "Conhecimento",
     "emoji": "📚",
@@ -102,7 +108,7 @@
     "url": "https://portalbelohorizonte.com.br/"
   },
   {
-    "id": 13,
+    "id": "13",
     "nome": "Centro Cultural Venda Nova",
     "categoria": "Comunidade",
     "emoji": "📍",
@@ -111,7 +117,7 @@
     "url": "https://prefeitura.pbh.gov.br/fundacao-municipal-de-cultura/centros-culturais"
   },
   {
-    "id": 14,
+    "id": "14",
     "nome": "Centro Cultural Alto Vera Cruz",
     "categoria": "Comunidade",
     "emoji": "🥁",
@@ -120,7 +126,7 @@
     "url": "https://prefeitura.pbh.gov.br/fundacao-municipal-de-cultura/centros-culturais"
   },
   {
-    "id": 15,
+    "id": "15",
     "nome": "Centro Cultural Pampulha",
     "categoria": "Comunidade",
     "emoji": "🎭",
@@ -129,7 +135,7 @@
     "url": "https://prefeitura.pbh.gov.br/fundacao-municipal-de-cultura/centros-culturais"
   },
   {
-    "id": 16,
+    "id": "16",
     "nome": "Centro Cultural Vila Marçola",
     "categoria": "Comunidade",
     "emoji": "🎤",
@@ -138,7 +144,7 @@
     "url": "https://prefeitura.pbh.gov.br/fundacao-municipal-de-cultura/centros-culturais"
   },
   {
-    "id": 17,
+    "id": "17",
     "nome": "Centro Cultural Padre Eustáquio",
     "categoria": "Comunidade",
     "emoji": "🎸",
@@ -147,7 +153,7 @@
     "url": "https://prefeitura.pbh.gov.br/fundacao-municipal-de-cultura/centros-culturais"
   },
   {
-    "id": 18,
+    "id": "18",
     "nome": "Lagoa da Pampulha",
     "categoria": "Ar Livre",
     "emoji": "🚴",
@@ -156,7 +162,7 @@
     "url": "https://portalbelohorizonte.com.br/"
   },
   {
-    "id": 19,
+    "id": "19",
     "nome": "Praça da Liberdade",
     "categoria": "Ar Livre",
     "emoji": "🌴",
@@ -165,7 +171,7 @@
     "url": "https://circuitoliberdade.com.br/"
   },
   {
-    "id": 20,
+    "id": "20",
     "nome": "Mercado Central de BH",
     "categoria": "Ar Livre",
     "emoji": "🧀",
